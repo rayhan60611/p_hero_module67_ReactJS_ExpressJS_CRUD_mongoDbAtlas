@@ -54,7 +54,7 @@ const Users = () => {
   return (
     <div
       className="flex flex-col md:flex-row gap-5 justify-center  
-    mx-auto h-screen bg-black px-10"
+    mx-auto h-auto md:h-screen overflow-y-auto bg-black pb-10 px-10"
     >
       {/* left */}
       <div className="flex flex-col w-full justify-start items-center gap-5 mt-6  h-[480px] basis-[50%]">
