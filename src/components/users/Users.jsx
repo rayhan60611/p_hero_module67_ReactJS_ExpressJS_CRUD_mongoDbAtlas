@@ -53,11 +53,11 @@ const Users = () => {
 
   return (
     <div
-      className="flex flex-col md:flex-row gap-5 justify-center  w-11/12
-    mx-auto"
+      className="flex flex-col md:flex-row gap-5 justify-center  
+    mx-auto h-screen bg-black px-10"
     >
       {/* left */}
-      <div className="flex flex-col w-full justify-start items-center gap-5 mt-6  h-[480px]">
+      <div className="flex flex-col w-full justify-start items-center gap-5 mt-6  h-[480px] basis-[50%]">
         <h1 className="text-4xl font-bold text-green-500">Add Users</h1>
         <form
           onSubmit={handleFormOnSubmit}
@@ -86,38 +86,47 @@ const Users = () => {
           />
         </form>
       </div>
+
       {/* right */}
-      <div className="flex flex-col w-full justify-start items-center gap-5 mt-6  h-[480px]">
+      <div className="flex flex-col w-full justify-start items-center gap-5 mt-6  h-[480px] basis-[50%]">
         <h1 className="text-4xl font-bold text-green-500">
           Total Users:{" "}
           <p className="text-red-500 inline-block">{users.length}</p>
         </h1>
-        <div className="bg-gray-200 flex flex-col justify-center items-start gap-4 w-full mx-auto py-8 px-5 text-black overflow-auto pt-32">
-          {users.map((user, index) => (
-            <div
-              key={user._id}
-              className="flex gap-5 justify-start items-center border-[3px] border-gray-300 w-full p-1 px-2 "
-            >
-              <div className="text-3xl basis-[10%] pl-1">{index + 1}</div>
-              <div className="basis-[70%]">
-                <p className="font-bold">{user.name}</p>
-                <p className="font-bold">{user.email}</p>
-              </div>
-              <div className="flex gap-2 basis-[20%]">
-                <Link to={`/update/${user._id}`}>
-                  <button className="bg-lime-500 text-white p-1 hover:bg-lime-700 duration-500 text-sm px-2 py-2">
-                    Update
-                  </button>
-                </Link>
-                <button
-                  onClick={() => handleDelteUser(user._id)}
-                  className="bg-red-500 text-white px-2 py-2 hover:bg-red-700 duration-500  text-sm"
+        <div className="bg-gray-200 flex flex-col justify-center items-start gap-4 w-full h-full mx-auto py-8 px-5 text-black overflow-auto pt-32">
+          {users.length === 0 ? (
+            <h1 className="text-green-500 text-4xl font-bold basis-[50%]  text-center w-full h-full">
+              Fetching...
+            </h1>
+          ) : (
+            <>
+              {users.map((user, index) => (
+                <div
+                  key={user._id}
+                  className="flex gap-5 justify-start items-center border-[3px] border-gray-300 w-full p-1 px-2 "
                 >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+                  <div className="text-3xl basis-[10%] pl-1">{index + 1}</div>
+                  <div className="basis-[70%]">
+                    <p className="font-bold">{user.name}</p>
+                    <p className="font-bold">{user.email}</p>
+                  </div>
+                  <div className="flex gap-2 basis-[20%]">
+                    <Link to={`/update/${user._id}`}>
+                      <button className="bg-lime-500 text-white p-1 hover:bg-lime-700 duration-500 text-sm px-2 py-2">
+                        Update
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelteUser(user._id)}
+                      className="bg-red-500 text-white px-2 py-2 hover:bg-red-700 duration-500  text-sm"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>
